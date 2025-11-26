@@ -1,0 +1,16 @@
+# Ignore all class files
+*.class
+
+# Ignore IntelliJ IDEA files
+.idea/
+*.iml
+
+# Ignore Eclipse files
+.project
+.classpath
+.settings/
+
+# Ignore build directories
+/bin/
+/out/
+/target/
