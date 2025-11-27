@@ -81,3 +81,6 @@ public class oops {
 
 
 // * every class creates a separate .class file during compilation
+
+
+//* Static methods belong to the class, They can run without creating an object, But agar methods non-static hote, toh woh object ke sath hi exist karte hain. Static context (main method) se unko direct call nahi kiya ja sakta.
