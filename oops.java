@@ -57,9 +57,9 @@ public class oops {
 
 
 // OOPs Concepts in Java
-// 1. Encapsulation
-// 2. Inheritance
-// 3. Polymorphism
+// 1. Encapsulation => Data Hiding
+// 2. Inheritance => Single, Multiple, Multilevel
+// 3. Polymorphism => Overloading and Overriding
 // 4. Abstraction
 //* Abstraction : User ko sirf important features dikhaye jaate hain
 //* Implementation details chhupaye jaate hain
