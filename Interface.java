@@ -1,6 +1,10 @@
 interface Computer {
     int MAX_SPEED = 5000; // constant variable, by default public, static and final
     void Compile ();
+
+    default void shutdown() {
+        System.out.println("Shutting down the computer");
+    } // concrete method, supported from Java 8+, default, static, private(Java 9+)
 }
 
 interface Software {
@@ -44,6 +48,8 @@ public class Interface {
         dev.DoCode(desk);
 
         System.out.println(Computer.MAX_SPEED); // => 5000
+
+        lap.shutdown(); // calling default method from interface
        
     }
 }
