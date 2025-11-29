@@ -1,17 +1,19 @@
 interface Computer {
     int MAX_SPEED = 5000; // constant variable, by default public, static and final
-    void Compile ();
+
+    void Compile (); // abstract method, by default public and abstract, abstract means whoever implements this interface must implement this method
 
     default void shutdown() {
         System.out.println("Shutting down the computer");
     } // concrete method, supported from Java 8+, default, static, private(Java 9+)
 }
-
+// another interface
 interface Software {
     void run();
 }
 
 
+// we can use multiple inheritance with interfaces
 class Laptop implements Computer, Software {
     public void Compile (){
         System.out.println("Compiling with laptop");
