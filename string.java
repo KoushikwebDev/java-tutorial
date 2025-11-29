@@ -21,7 +21,7 @@ public class string {
     }
 
     public static void stringBuffer(){
-        StringBuffer sb = new StringBuffer("Koushik"); // mutable
+        StringBuffer sb = new StringBuffer("Koushik"); // mutable and synchronized, thread safe
         sb.append(" Saha");
         System.out.println(sb); // Koushik Saha
     }

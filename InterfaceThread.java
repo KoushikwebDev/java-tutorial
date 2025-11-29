@@ -52,11 +52,14 @@ public class InterfaceThread {
         System.out.println("Main thread ended");
 
         //* now when we use join method, main thread will wait for child thread to complete its execution, then only main thread will continue its execution.
-        
+
        //? otherwise, main thread may complete its execution before child threads complete their execution.
        
     }
 }
+
+// checked exception is an exception that is checked at compile-time by the compiler.
+// unchecked exception is an exception that is not checked at compile-time, but at runtime.
 
 
 // In Java, there are two main ways to create a thread: by extending the Thread class or by implementing the Runnable interface.
