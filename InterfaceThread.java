@@ -7,6 +7,12 @@ class A implements Runnable {
             System.out.println("Thread A: " + i);
 
             // adding sleep time to let other thread execute
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     } 
 }
