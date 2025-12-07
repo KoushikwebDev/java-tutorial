@@ -21,4 +21,4 @@ class Test {
 // 2. Protected Constructor => Accessible within the same package and subclasses
 // 3. Default (Package-Private) Constructor => Accessible only within the same package
 // 4. Private Constructor => Accessible only within the same class
-//* Private Constructor is used in Singleton Design Pattern to restrict instantiation of a class to a
+//* Private Constructor is used in Singleton Design Pattern to restrict instantiation of a class to a single instance

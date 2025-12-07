@@ -10,8 +10,7 @@ class A implements Runnable {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                e.printStackTrace(); // print the exception trace, it means something went wrong
             }
         }
     } 

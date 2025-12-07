@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class array {
 
     public static void main(String[] args) {
@@ -5,6 +8,7 @@ public class array {
         int[] nums = { 10, 20, 40, 50, 60 };
 
         int [] arr = new int[5]; // Declaration of array with size 5
+        List<Integer> arr2 = Arrays.asList(1, 2, 3, 4, 5); // Declaration of array with size 5
 
         String names[] = { "Koushik", "Saha" }; // Declaration and Initialization of String array
 

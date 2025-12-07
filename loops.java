@@ -24,5 +24,7 @@ public class loops {
         for(int num : numbers){
             System.out.println("Enhanced for loop value: " + num);
         }
+
+        
     }
 }
