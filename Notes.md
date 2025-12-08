@@ -574,5 +574,154 @@ class Singleton {
 
 ---
 
+## ❓Q14: Explain Aggregation and Composition in java ?
+**💡 Answer:**
+Dono HAS-A relationship show karte hain.
+
+Aggregation is a weak association where the lifecycle of both objects is independent.
+Composition is a strong association where child’s lifecycle depends on parent’s lifecycle.
+
+
+🟩 1️⃣ Aggregation (Weak HAS-A relationship)
+
+One object has another object but both can exist independently.
+
+✔ Partial ownership
+✔ Child object can exist without parent
+✔ Loose coupling
+
+```java
+class Student {
+    String name;
+    Student(String name) {
+        this.name = name;
+    }
+}
+
+class Department {
+    Student student;
+    Department(Student student) {
+        this.student = student;
+    }
+}
+```
+
+Here: Department exists even if student removed
+
+Student can exist without Department
+
+🟦 Real-life: Bank & Customer, Team & Player
+
+🟥 2️⃣ Composition (Strong HAS-A relationship)
+
+One object owns another object and child cannot exist without parent.
+
+✔ Strong ownership
+✔ If parent destroyed → child destroyed automatically
+✔ Tight coupling
+```java
+class Heart {
+    void pump() {
+        System.out.println("Heart pumping");
+    }
+}
+
+class Human {
+    Heart heart;
+
+    Human() {
+        this.heart = new Heart(); // dependent creation
+    }
+}
+```
+
+Here: Heart 🫀 completely depends on Human
+
+Human dies → Heart gone
+
+🟥 Real-life: House & Room, Car & Engine
+
+Aggregation and Composition both represent HAS-A relationships.
+In Aggregation, objects are independent (weak relationship).
+In Composition, the parent fully owns the child (strong relationship),
+and if the parent is destroyed, the child also disappears.
+
+---
+
+## ❓Q15: What is an Anonymous Inner Class?
+**💡 Answer:**
+Anonymous Inner Class is an unnamed class which is defined and instantiated at the same time, usually to provide a one-time implementation of an interface or abstract class.
+
+```java
+interface Greeting {
+    void sayHello();
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Greeting g = new Greeting() {
+            public void sayHello() {
+                System.out.println("Hello from Anonymous Inner Class");
+            }
+        };
+        g.sayHello();
+    }
+}
+```
+
+Anonymous Inner Class are used when you need to provide a one-time implementation of an interface or abstract class.
+
+```java
+class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a = new Animal() {
+            void sound() {
+                System.out.println("Dog Barks");
+            }
+        };
+        a.sound();
+    }
+}
+```
+---
+
+## ❓Q16: Difference between Implicit and Explicit type conversion in java ??
+**💡 Answer:**
+Implicit conversion (widening) happens automatically when assigning a smaller type to a larger type, with no data loss.
+Explicit conversion (narrowing) requires casting when assigning a larger type to a smaller type and may result in data loss.
+
+🟩 1️⃣ Implicit Type Conversion (Widening)
+
+Automatically hota hai
+Smaller → Larger data type me convert
+
+✔ No data loss ✔ JVM handles automatically
+```java
+int a = 10;
+double b = a;  // int to double (automatic)
+System.out.println(b); // 10.0
+```
+🟥 2️⃣ Explicit Type Conversion (Narrowing)
+
+Manually cast karna padta hai
+Larger → Smaller data type
+
+⚠ Possibility of data loss ⚠ Cast operator required
+```java
+double x = 10.99;
+int y = (int) x;   // explicit cast
+System.out.println(y); // 10 (decimal lost)
+```
+---
+
+
+
+
 
 
