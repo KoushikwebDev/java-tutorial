@@ -720,6 +720,230 @@ System.out.println(y); // 10 (decimal lost)
 ```
 ---
 
+## ❓Q17: What is the purpose of the Volatile keyword in java?
+**💡 Answer:**
+volatile keyword ensures that a variable’s value is always read from main memory,
+and not from a thread’s local cache.
+
+Matlab:
+Multiple threads agar same variable ko access/modify karein ✔
+To volatile guarantee deta hai ki most updated value hi milegi
+
+🚫 Problem Without volatile
+
+Java me threads value ko apne local CPU cache me rakh lete hain
+→ Main memory update nahi hota
+→ Dusra thread purani value dekh sakta hai ❌
+
+This causes visibility issue.
+
+🟩 volatile solves which issue?
+
+✔ Visibility issue ✔ Memory consistency guarantee
+
+🟥 What volatile does NOT solve?
+
+❌ Atomicity ( operations like i++ are still unsafe )
+❌ Locking or mutual exclusion nahi deta
+
+For atomic operations → use synchronized / Atomic classes
+
+```java
+class Demo {
+    boolean flag = true;
+
+    void runTask() {
+        while(flag) {
+            // Thread will never exit! cached flag value used
+        }
+    }
+}
+```
+
+```java
+class Demo {
+    volatile boolean flag = true;
+
+    void runTask() {
+        while(flag) {
+            // Now sees latest value from main memory
+        }
+    }
+}
+// Ab agar another thread flag = false kare → loop stops ✔
+```
+
+Full Working Thread Example:
+```java
+class Worker extends Thread {
+    volatile boolean running = true; // Shared flag
+
+    @Override
+    public void run() {
+        System.out.println("Worker thread started...");
+        
+        while (running) {  // Thread will keep running till flag=true
+            // doing some work...
+        }
+
+        System.out.println("Worker thread stopped!");
+    }
+}
+
+public class VolatileExample {
+    public static void main(String[] args) throws Exception {
+        Worker worker = new Worker();
+        worker.start();
+
+        Thread.sleep(2000); // Main thread waits 2 seconds
+        System.out.println("Main thread changing flag to false");
+
+        worker.running = false;  // stops worker thread
+    }
+}
+```
+
+With the Private volatile flag example : 
+
+```java
+class Worker extends Thread {
+    private volatile boolean running = true;
+
+    public void stopRunning() {
+        running = false;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    @Override
+    public void run() {
+        while (running) {
+            // Thread work...
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Worker w = new Worker();
+        w.start();
+
+        Thread.sleep(2000);
+        w.stopRunning(); // ✔ Thread will stop
+    }
+}
+```
+Volatile ensures that changes made by one thread to a variable are visible to other threads immediately.
+Without volatile, worker thread may never see the update and will run forever.
+
+---
+
+## ❓Q18: Explain Scanner in Java.
+**💡 Answer:**
+Scanner is a Java class used to read input from keyboard, files or strings.
+It provides methods to read different data types easily using token-based parsing.
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+
+        scanner.close(); // always close the scanner
+    }
+}
+```
+
+⚠ Important Point (Mostly Asked!)
+
+nextInt() vs nextLine() confusion:
+
+nextInt() only number padhta hai
+
+Enter/space buffer me reh jata hai
+
+Next nextLine() uss buffer ko read kar leta hai → empty input issue 😵
+
+---
+
+## ❓Q19: What are the Access Modifiers in Java?
+**💡 Answer:**
+Access modifiers in Java are keywords used to control the visibility and accessibility of classes, methods, variables, and other members of a program.
+
+There are four access modifiers in Java:
+
+public: Accessible from any other class.
+
+private: Accessible only within the same class.
+
+protected: Accessible within the same package and subclasses.
+
+default (package-private): Accessible within the same package.
+
+---
+
+## ❓Q20: What is finalize() in Java?
+**💡 Answer:**
+finalize() is a method in Java that is called by the garbage collector just before an object is deallocated from memory.
+
+```java
+class Demo {
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Finalize method called!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Demo d = new Demo();
+        d = null;
+        System.gc();  // Request GC to run
+    }
+}
+```
+
+| Rule                        | Meaning                                        |
+| --------------------------- | ---------------------------------------------- |
+| Not guaranteed to run       | JVM decide karta hai kab run kare ya skip kare |
+| Called only once per object | Double finalize nahi hota                      |
+| Deprecated since Java 9     | Future me fully remove ho sakta hai            |
+
+finalize() is a method of the Object class that the Garbage Collector may call before deleting an object to perform cleanup.
+But it is deprecated now because its execution is not guaranteed, and better resource management methods exist.
+
+Alternative : 
+```java
+try (FileInputStream fis = new FileInputStream("file.txt")) {
+    // use file
+} catch (Exception e) { }
+```
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
