@@ -40,7 +40,7 @@ public class Sorting {
 
         // list.sort(null); // Sorts in natural order => ascending order
 
-        list.sort(new IntegerComparator());
+        list.sort(new IntegerComparator()); // sorting using comparator class
 
         list.sort((i1, i2) -> i2 - i1); // descending order using lambda expression
 
