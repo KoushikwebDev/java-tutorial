@@ -957,6 +957,12 @@ public class LambdaExpression {
 
     public static void main(String[] args){
 
+        Greet oldWay = new Greet(){
+            public void sayHello(String name){
+                System.out.println("Hello from Lambda Expression " + name);
+            }
+        };
+
         Greet greet = (String name) -> {
             System.out.println("Hello from Lambda Expression " + name);
         };
@@ -969,6 +975,13 @@ public class LambdaExpression {
 
 
         // Example with return type
+
+        Display oldWay2 = new Display(){
+            public String show(String message){
+                return message;
+            }
+        };
+        
         Display display = (message) -> {
             return "Displaying message: " + message;
         };
