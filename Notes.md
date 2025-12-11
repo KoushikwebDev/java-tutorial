@@ -932,6 +932,82 @@ try (FileInputStream fis = new FileInputStream("file.txt")) {
 ```
 ---
 
+## ❓Q21: Explain Lambda expression in java ?
+**💡 Answer:**
+Lambda expressions provide a clear and concise way to represent a method interface using an expression.
+
+They work with functional interfaces and help in functional programming in Java.
+
+```java
+
+@FunctionalInterface // interface with only 1 abstract method
+ interface Greet {
+
+    void sayHello(String name);
+}
+
+@FunctionalInterface 
+interface Display {
+
+    String show(String message);
+}
+
+public class LambdaExpression {
+    
+
+    public static void main(String[] args){
+
+        Greet greet = (String name) -> {
+            System.out.println("Hello from Lambda Expression " + name);
+        };
+
+        Greet greet2 = (name) -> System.out.println("Hello again from Lambda Expression " + name);
+
+        Greet greet3 = name -> System.out.println("Hello once more from Lambda Expression " + name);
+
+        // greet.sayHello("Koushik");
+
+
+        // Example with return type
+        Display display = (message) -> {
+            return "Displaying message: " + message;
+        };
+
+        display = message -> "Displaying message: " + message;
+
+        System.out.println(display.show("Lambda Expressions are cool!"));
+
+    }
+}
+
+```
+
+```java
+new Thread(new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Hello");
+    }
+}).start();
+
+// to => 
+
+new Thread(() -> System.out.println("Hello")).start();
+
+// Streams API
+
+List<Integer> nums = Arrays.asList(1,2,3,4,5);
+
+nums.stream()
+    .filter(n -> n % 2 == 0)
+    .forEach(n -> System.out.println(n));
+
+```
+
+---
+
+
+
 
 
 
