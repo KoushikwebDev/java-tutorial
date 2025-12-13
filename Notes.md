@@ -981,7 +981,7 @@ public class LambdaExpression {
                 return message;
             }
         };
-        
+
         Display display = (message) -> {
             return "Displaying message: " + message;
         };
@@ -1016,6 +1016,12 @@ nums.stream()
     .forEach(n -> System.out.println(n));
 
 ```
+---
+
+## ❓Q22: Collection Framework Chart.
+**💡 Answer:**
+
+![alt text](./images/collection.png)
 
 ---
 
