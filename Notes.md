@@ -1066,6 +1066,8 @@ With Spring Data JPA:
 CSRF (Cross-Site Request Forgery) is an attack where a malicious site tricks a logged-in user into sending unauthorized requests using their active session.
 Spring Security prevents this by generating a unique CSRF token that must be sent with every state-changing request (POST/PUT/DELETE). If the token is missing or invalid, the request is rejected.
 
+for this from the client side has to send the X-CSRF-TOKEN in header and in the postman have to set the key value in the header to access the POST/PUT/DELETE methods.
+
 CSRF = Cross-Site Request Forgery
 
 It is an attack where a malicious website tricks a logged-in user into performing unwanted actions on another website without their permission.
