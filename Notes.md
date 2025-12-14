@@ -1025,6 +1025,121 @@ nums.stream()
 
 ---
 
+## ❓Q22: Explain JPA, Hibernate and Spring Data JPA ?
+**💡 Answer:**
+JPA Stands for Java persistance API.
+Hibernate is a ORM.
+
+JPA is a specification that defines how Java objects should be mapped to database tables.
+Hibernate is the most popular ORM framework that implements JPA and provides the actual functionality to interact with the database.
+
+Spring Data JPA = JPA + Hibernate + Spring Boot + Auto Repository Generator
+
+It is a framework from Spring that makes database operations super easy.
+
+Without Spring Data JPA (Pure Hibernate):
+
+You write SQL / HQL
+
+You manage EntityManager
+
+You open/close sessions
+
+You create DAOs
+
+Lots of boilerplate code
+
+With Spring Data JPA:
+
+❌ No SQL needed for basic CRUD
+
+❌ No EntityManager
+
+❌ No DAO implementation
+
+✔ Only write interface → everything works!
+
+---
+
+## ❓Q23: Explain CSRF in Spring Security?
+**💡 Answer:**
+CSRF (Cross-Site Request Forgery) is an attack where a malicious site tricks a logged-in user into sending unauthorized requests using their active session.
+Spring Security prevents this by generating a unique CSRF token that must be sent with every state-changing request (POST/PUT/DELETE). If the token is missing or invalid, the request is rejected.
+
+CSRF = Cross-Site Request Forgery
+
+It is an attack where a malicious website tricks a logged-in user into performing unwanted actions on another website without their permission.
+
+Example:
+You are logged in to your bank website.
+
+Now you visit a fake website that secretly sends:
+```java
+POST https://bank.com/transfer?amount=50000&to=hacker
+```
+
+Your browser automatically includes your session cookie,
+so bank thinks YOU sent the request → money transferred 😱
+
+💡 Why CSRF happens?
+
+Because browsers automatically send cookies for:
+
+GET requests, POST requests, AJAX calls, Image loads, Hidden forms
+
+So attacker can abuse your session.
+
+🔐 CSRF Protection in Spring Security
+
+Spring Security protects you using a CSRF Token.
+
+✔ How CSRF Token Works:
+
+When user loads a form → Spring adds a hidden field:
+```javascript
+<input type="hidden" name="_csrf" value="abc123xyz">
+```
+
+When form is submitted → Spring expects the same token in POST request.
+
+If token is missing or incorrect → Spring rejects the request.
+
+🔥 Without CSRF token → attacker cannot forge the request.
+⚙️ When CSRF is Enabled by Default?
+
+Spring Security enables CSRF by default for:
+
+✔ Browser-based apps
+✔ Forms
+✔ MVC applications
+
+❌ When to Disable CSRF?
+
+For REST APIs, mobile apps, Postman, SPA (React/Angular):
+
+```java
+http.csrf().disable();
+```
+Because APIs typically use:
+
+✔ JWT tokens
+✔ OAuth
+✔ Session-less authentication
+
+And CSRF is not needed.
+
+🧠 Real Example
+```java
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+    http
+        .csrf().disable()  // disable for APIs
+        .authorizeHttpRequests()
+        .anyRequest().authenticated();
+}
+```
+---
+
 
 
 
