@@ -1141,10 +1141,93 @@ protected void configure(HttpSecurity http) throws Exception {
 }
 ```
 ---
+## ❓Q24: Difference between @Service, @Component and @Repository?
+**💡 Answer:**
+@Component is a generic Spring bean.
+@Service is used for business logic and service layer.
+@Repository is used for data access and provides exception translation from database-specific exceptions to Spring’s DataAccessException hierarchy.
 
+So technically:
+@Service == @Component
+@Repository == @Component
 
+✅ Will the application work if you use @Component everywhere?
+YES.
 
+Because:
+@Service
+@Repository
+➡ both internally are just @Component.
 
+So Spring will:
+Detect the class
+Create a bean
+Inject it using @Autowired
+
+❌ Then why NOT use @Component everywhere?
+Because Spring adds extra behavior based on the stereotype.
+
+1️⃣ Problem #1: You lose exception translation
+What Spring does with @Repository
+```java
+@Repository
+public class UserRepository { }
+```
+
+Spring automatically converts:
+```java
+SQLException
+HibernateException
+```
+➡ into:
+```java
+DataAccessException (unchecked, consistent)
+```
+If you use @Component instead
+```java
+@Component
+public class UserRepository { }
+```
+
+❌ Exception translation WILL NOT happen
+
+So:
+You may get vendor-specific exceptions
+Harder to handle errors consistently
+📌 This is the biggest technical drawback
+
+```java
+@Transactional
+@Service
+public class OrderService { }
+
+// This clearly means:
+// “Transactional business service”
+```
+✅ When is @Component OK?
+✔ Utility classes
+✔ Helper classes
+✔ Validators
+✔ Converters
+✔ Config helpers
+
+---
+
+## ❓Q25: What is @Transactional?
+**💡 Answer:**
+@Transactional works via Spring AOP proxies and is best applied at the service layer.
+Using it on repositories limits transaction scope, and using it on generic components reduces clarity.
+Transactions are applied only on external method calls, not internal self-invocations.
+
+@Transactional tells Spring:
+“Run this method inside a database transaction.”
+
+Spring will then:
+Start a transaction
+Commit if successful
+Rollback if an exception occurs
+
+---
 
 
 
