@@ -1229,6 +1229,39 @@ Rollback if an exception occurs
 
 ---
 
+## ❓Q26: Explain Checked vs Unchecked Exception?
+**💡 Answer:**
+Checked exceptions are checked at compile time and must be handled or declared, whereas unchecked exceptions occur at runtime and usually represent programming errors.
+
+🟦 Checked Exceptions
+Checked exceptions wo hote hain jo compile time pe check kiye jaate hain.
+
+✔ Compiler force karta hai handle karo ya declare karo
+✔ Usually recoverable situations
+
+📌 Examples:
+```java
+IOException
+SQLException
+FileNotFoundException
+ClassNotFoundException
+```
+
+🟥 Unchecked Exceptions
+Unchecked exceptions wo hote hain jo runtime pe aate hain
+Compiler force nahi karta handle karne ke liye.
+
+✔ Mostly programming mistakes
+
+📌 Examples:
+```java
+NullPointerException
+ArrayIndexOutOfBoundsException
+ArithmeticException
+IllegalArgumentException
+```
+---
+
 
 
 
