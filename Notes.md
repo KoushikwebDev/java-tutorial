@@ -1262,6 +1262,71 @@ IllegalArgumentException
 ```
 ---
 
+## ❓Q27: Why String is Immutable?
+**💡 Answer:**
+Strings are immutable for security, memory optimization, thread safety, and predictable behavior, especially because they are widely shared and used as keys and identifiers.
+
+Strings are widely used for:
+Passwords
+Tokens
+URLs
+File paths
+Database queries
+
+If strings were mutable:
+Another part of code could change sensitive data
+Security vulnerabilities increase
+
+```java
+String a = "hello";
+String b = "hello";
+```
+Both point to same memory.
+If strings were mutable:
+Changing a would affect b ❌
+👉 Immutability makes sharing safe.
+
+Strings are thread-safe by default. Multiple threads can read same string safely.
+
+Strings are used as:
+HashMap keys
+HashSet elements
+
+If mutable:
+Hash value changes
+Map breaks ❌
+👉 Immutability guarantees stable hashcode.
+
+---
+
+## ❓Q28: How does Garbage Collection work?
+**💡 Answer:**
+JVM automatically frees memory of unreachable objects. Developers don’t manually deallocate memory.
+
+---
+
+## ❓Q29: What happens when Spring Boot application starts?
+**💡 Answer:**
+```java
+@SpringBootApplication
+→ Component scan
+→ Auto-configuration
+→ Embedded server starts
+→ Beans initialized
+```
+
+---
+
+## ❓Q30: How does JPA save Java objects to DB?
+**💡 Answer:**
+JPA maps entities to tables and converts objects to SQL queries using ORM (Hibernate).
+
+---
+
+
+
+
+
 
 
 
